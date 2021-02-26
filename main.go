@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/m-semnani/toy-gopher/hi"
 )
 
 func main() {
-	fmt.Printf("Hello world %d", 1)
+	fmt.Print(hi.HelloWorld("World!"))
 }
