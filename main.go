@@ -3,13 +3,18 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/m-semnani/toy-gopher/hi"
 )
 
 func main() {
-	printMe("World!")
-	printMe("")
+	args := os.Args[1:]
+	fmt.Printf("%v\n", args)
+
+	for _, msg := range args {
+		printMe(msg)
+	}
 }
 
 func printMe(str string) {
