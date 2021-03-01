@@ -20,7 +20,7 @@ func main() {
 func printMe(str string) {
 	msg, err := hi.HelloWorld(str)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	fmt.Println(msg)
