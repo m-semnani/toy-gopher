@@ -23,8 +23,8 @@ func HelloWorld(name string) (string, error) {
 func getRandomMessage() string {
 	randMsg := []string{
 		"Hi %v, welcome :)",
-		"Hello there, nice to meet you %v",
-		"%v! Good morning.",
+		"Hello there, nice to meet you %v :)",
+		"Hey %v! Good morning.",
 	}
 
 	return randMsg[rand.Intn(len(randMsg))]
