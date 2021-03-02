@@ -13,7 +13,7 @@ func TestEmptyHelloWorld(t *testing.T) {
 	}
 }
 
-func testHelloWorld(t *testing.T) {
+func TestHelloWorld(t *testing.T) {
 	name := "gholi"
 	want := regexp.MustCompile(`\b` + name + `b`)
 	msg, err := HelloWorld(name)
