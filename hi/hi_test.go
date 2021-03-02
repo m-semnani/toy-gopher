@@ -15,7 +15,7 @@ func TestEmptyHelloWorld(t *testing.T) {
 
 func TestHelloWorld(t *testing.T) {
 	name := "gholi"
-	want := regexp.MustCompile(`\b` + name + `b`)
+	want := regexp.MustCompile(`.*(` + name + `)+.*`)
 	msg, err := HelloWorld(name)
 	if !want.MatchString(msg) || err != nil {
 		t.Fatalf(`Hello("gholi") = %q, %v, want match for %#q, nil`, msg, err, want)
