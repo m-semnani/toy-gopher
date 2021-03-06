@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/m-semnani/toy-gopher/hi"
 	"log"
 	"os"
-
-	"github.com/m-semnani/toy-gopher/hi"
 )
 
 func main() {
