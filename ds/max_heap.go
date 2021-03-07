@@ -37,7 +37,7 @@ func (h *MaxHeap) Max() int {
 
 func (h *MaxHeap) siftUp(i int) {
 	for i > 0 && h.array[i] > h.array[h.parent(i)] {
-		h.array[i], h.array[h.parent(i)] = h.array[h.parent(i)], h.array[i]
+		h.swap(i, h.parent(i))
 		i = h.parent(i)
 	}
 }
@@ -51,14 +51,14 @@ func (h *MaxHeap) siftDown() {
 
 		if h.right(i) > 0 && h.array[h.left(i)] > h.array[h.right(i)] {
 			if h.array[i] < h.array[h.left(i)] {
-				h.array[i], h.array[h.left(i)] = h.array[h.left(i)], h.array[i]
+				h.swap(i, h.left(i))
 				i = h.left(i)
 			} else {
 				return
 			}
 		} else if h.right(i) > 0 && h.array[h.left(i)] < h.array[h.right(i)] {
 			if h.array[i] < h.array[h.right(i)] {
-				h.array[i], h.array[h.right(i)] = h.array[h.right(i)], h.array[i]
+				h.swap(i, h.right(i))
 				i = h.right(i)
 			} else {
 				return
@@ -95,6 +95,10 @@ func (h *MaxHeap) last() int {
 
 func (h *MaxHeap) String() string {
 	return fmt.Sprintf("%q", h.array)
+}
+
+func (h *MaxHeap) swap(i1 int, i2 int){
+	h.array[i1], h.array[i2] = h.array[i2], h.array[i1]
 }
 
 func main() {
