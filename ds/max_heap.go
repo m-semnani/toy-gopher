@@ -16,8 +16,8 @@ func NewMaxHeap(inputArray []int) MaxHeap {
 
 func (h *MaxHeap) Insert(value int) {
 	h.array = append(h.array, value)
-	if h.last() != 0 {
-		h.siftUp(h.last())
+	if h.lastIndex() != 0 {
+		h.siftUp(h.lastIndex())
 	}
 }
 
@@ -27,7 +27,7 @@ func (h *MaxHeap) Max() int {
 	}
 
 	result := h.array[0]
-	h.array[0] = h.array[h.last()]
+	h.array[0] = h.array[h.lastIndex()]
 	h.array = h.array[:len(h.array)-1]
 	if len(h.array) > 1 {
 		h.siftDown()
@@ -44,7 +44,7 @@ func (h *MaxHeap) siftUp(i int) {
 
 func (h *MaxHeap) siftDown() {
 	i := 0
-	for i < h.last() {
+	for i < h.lastIndex() {
 		if h.left(i) < 0 && h.right(i) < 0 {
 			return
 		}
@@ -75,7 +75,7 @@ func (h *MaxHeap) parent(i int) int {
 
 func (h *MaxHeap) left(i int) int {
 	left := (i * 2) + 1
-	if left > h.last() {
+	if left > h.lastIndex() {
 		return -1
 	}
 	return left
@@ -83,13 +83,13 @@ func (h *MaxHeap) left(i int) int {
 
 func (h *MaxHeap) right(i int) int {
 	right := (i * 2) + 2
-	if right > h.last() {
+	if right > h.lastIndex() {
 		return -1
 	}
 	return right
 }
 
-func (h *MaxHeap) last() int {
+func (h *MaxHeap) lastIndex() int {
 	return len(h.array) - 1
 }
 
