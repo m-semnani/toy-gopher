@@ -6,12 +6,12 @@ type MaxHeap struct {
 	array []int
 }
 
-func NewMaxHeap(inputArray []int) *MaxHeap {
+func NewMaxHeap(inputArray []int) MaxHeap {
 	newHeap := &MaxHeap{}
 	for _, v := range inputArray {
 		newHeap.Insert(v)
 	}
-	return newHeap
+	return *newHeap
 }
 
 func (h *MaxHeap) Insert(value int) {
@@ -97,21 +97,14 @@ func (h *MaxHeap) String() string {
 	return fmt.Sprintf("%q", h.array)
 }
 
-func (h *MaxHeap) swap(i1 int, i2 int){
+func (h *MaxHeap) swap(i1, i2 int){
 	h.array[i1], h.array[i2] = h.array[i2], h.array[i1]
 }
 
 func main() {
-	//inputArray := []int{12, 5, 1, 8, 15, 2, 7, 3, 4, 10}
-	heap := &MaxHeap{}
-	heap.Insert(12)
-	heap.Insert(5)
-	heap.Insert(1)
-	heap.Insert(8)
-	heap.Insert(15)
-	heap.Insert(2)
+	heap := NewMaxHeap([]int{12, 5, 1, 8, 15, 2, 7, 3, 4, 10})
 
-	for i := 0; i < 8; i++ {
+	for i := 0; i < 12; i++ {
 		fmt.Printf("%d, ", heap.array)
 		fmt.Printf("My Max is: %d\n", heap.Max())
 	}
