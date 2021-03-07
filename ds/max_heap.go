@@ -51,20 +51,15 @@ func (h *MaxHeap) siftDown() {
 			return
 		}
 
-		if r > 0 && h.array[l] > h.array[r] {
-			if h.array[i] < h.array[l] {
-				h.swap(i, l)
-				i = l
-			} else {
-				return
-			}
-		} else if r > 0 && h.array[l] < h.array[r] {
-			if h.array[i] < h.array[r] {
-				h.swap(i, r)
-				i = r
-			} else {
-				return
-			}
+		// choose the bigger between left or right
+		c := r
+		if r < 0 || h.array[l] > h.array[r] {
+			c = l
+		}
+
+		if h.array[c] > h.array[i] {
+			h.swap(c, i)
+			i = c
 		} else {
 			return
 		}
@@ -99,7 +94,7 @@ func (h *MaxHeap) String() string {
 	return fmt.Sprintf("%q", h.array)
 }
 
-func (h *MaxHeap) swap(i1, i2 int){
+func (h *MaxHeap) swap(i1, i2 int) {
 	h.array[i1], h.array[i2] = h.array[i2], h.array[i1]
 }
 
