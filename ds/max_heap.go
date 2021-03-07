@@ -27,8 +27,9 @@ func (h *MaxHeap) Max() int {
 	}
 
 	result := h.array[0]
-	h.array[0] = h.array[h.lastIndex()]
-	h.array = h.array[:len(h.array)-1]
+	l := h.lastIndex()
+	h.array[0] = h.array[l]
+	h.array = h.array[:l]
 	if len(h.array) > 1 {
 		h.siftDown()
 	}
