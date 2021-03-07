@@ -46,21 +46,22 @@ func (h *MaxHeap) siftUp(i int) {
 func (h *MaxHeap) siftDown() {
 	i := 0
 	for i < h.lastIndex() {
-		if h.left(i) < 0 && h.right(i) < 0 {
+		l, r := h.left(i), h.right(i)
+		if l < 0 && r < 0 {
 			return
 		}
 
-		if h.right(i) > 0 && h.array[h.left(i)] > h.array[h.right(i)] {
-			if h.array[i] < h.array[h.left(i)] {
-				h.swap(i, h.left(i))
-				i = h.left(i)
+		if r > 0 && h.array[l] > h.array[r] {
+			if h.array[i] < h.array[l] {
+				h.swap(i, l)
+				i = l
 			} else {
 				return
 			}
-		} else if h.right(i) > 0 && h.array[h.left(i)] < h.array[h.right(i)] {
-			if h.array[i] < h.array[h.right(i)] {
-				h.swap(i, h.right(i))
-				i = h.right(i)
+		} else if r > 0 && h.array[l] < h.array[r] {
+			if h.array[i] < h.array[r] {
+				h.swap(i, r)
+				i = r
 			} else {
 				return
 			}
