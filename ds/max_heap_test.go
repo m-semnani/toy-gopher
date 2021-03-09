@@ -35,3 +35,37 @@ func TestMaxHeap_left(t *testing.T) {
 		})
 	}
 }
+
+func TestMaxHeap_right(t *testing.T) {
+	type fields struct {
+		array []int
+	}
+	type args struct {
+		i int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+		want   int
+	}{
+		{
+			name: "first",
+			fields: struct{ array []int }{array: []int{
+				1, 2, 3,
+			}},
+			args: struct{ i int }{i: 0},
+			want: 2,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			h := &MaxHeap{
+				array: tt.fields.array,
+			}
+			if got := h.right(tt.args.i); got != tt.want {
+				t.Errorf("right() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
