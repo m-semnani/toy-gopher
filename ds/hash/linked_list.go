@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"math/rand"
+	"strconv"
 )
 
 type LinkedList struct {
@@ -52,11 +51,22 @@ func (l *LinkedList) insert(data int, place int) {
 
 }
 
+func (l *LinkedList) traverse() string {
+	temp := l.head
+	result := "{ " + strconv.Itoa(temp.data)
+	for temp.next != nil {
+		temp = temp.next
+		result = result + ", " + strconv.Itoa(temp.data)
+	}
+	result = result + " }"
+	return result
+}
+
 func main() {
-	ll := &LinkedList{ &Node{12, nil}, 0}
+	ll := &LinkedList{&Node{20, nil}, 0}
 	for i := 0; i < 20; i++ {
-		ll.add(rand.Intn(20))
+		ll.add(i)
 	}
 	println(ll.size)
-	fmt.Println(ll)
+	println(ll.traverse())
 }
