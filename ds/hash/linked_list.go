@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -27,6 +28,22 @@ func (l *LinkedList) add(data int) {
 			return
 		}
 		temp = temp.next
+	}
+}
+
+func (l *LinkedList) delByData(data int) bool {
+	temp := l.head
+	for temp.next != nil && temp.next.data != data {
+		temp = temp.next
+	}
+	if temp.next == nil {
+		fmt.Printf("%v not found to delete\n", data)
+		return false
+	} else {
+		temp.next = temp.next.next
+		l.size--
+		fmt.Printf("%v deleted successfully!\n", data)
+		return true
 	}
 }
 
@@ -68,5 +85,14 @@ func main() {
 		ll.add(i)
 	}
 	println(ll.size)
+	println(ll.traverse())
+
+	ll.delByData(10)
+	println(ll.traverse())
+
+	ll.delByData(19)
+	println(ll.traverse())
+
+	ll.delByData(23)
 	println(ll.traverse())
 }
