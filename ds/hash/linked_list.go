@@ -16,6 +16,14 @@ type Node struct {
 }
 
 func (l *LinkedList) add(data int) {
+	if l.head == nil {
+		l.head = &Node{
+			data: data,
+			next: nil,
+		}
+		l.size = 1
+		return
+	}
 	temp := l.head
 	for {
 		if temp.next == nil {
@@ -29,6 +37,24 @@ func (l *LinkedList) add(data int) {
 		}
 		temp = temp.next
 	}
+}
+
+func (l *LinkedList) delByIndex(index int) {
+	if index < 0 || index > l.size {
+		fmt.Printf("%v is out of bound!", index)
+		return
+	}
+
+	if index == 0 && l.size == 0 {
+		l.head = nil
+		return
+	}
+
+	before := l.head
+	for i := 0; i != index; i++ {
+		before = before.next
+	}
+	before.next = before.next.next
 }
 
 func (l *LinkedList) delByData(data int) bool {
@@ -80,7 +106,7 @@ func (l *LinkedList) traverse() string {
 }
 
 func main() {
-	ll := &LinkedList{&Node{20, nil}, 0}
+	ll := &LinkedList{}
 	for i := 0; i < 20; i++ {
 		ll.add(i)
 	}
