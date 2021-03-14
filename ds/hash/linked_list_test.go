@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func initLL(d []int) *LinkedList {
 	ll := &LinkedList{}
@@ -24,10 +26,16 @@ func TestLinkedList_delByIndex(t *testing.T) {
 		want *LinkedList
 	}{
 		{
-			"remove zero size ll",
+			"remove from zero size ll",
 			initLL([]int{}),
 			args{index: 0},
 			initLL([]int{}),
+		},
+		{
+			"remove a tail",
+			initLL([]int{1, 2, 3, 4, 5}),
+			args{index: 5},
+			initLL([]int{1, 2, 3, 4}),
 		},
 	}
 	for _, tt := range tests {
@@ -38,14 +46,19 @@ func TestLinkedList_delByIndex(t *testing.T) {
 				t.Errorf("wanted size=%v but actual size was %v=", tt.want.size, tt.initial.size)
 			}
 
-			i1 := tt.want.head
-			i2 := tt.initial.head
-			for i1 != nil {
-				if i1.data != i2.data {
-					t.Errorf("want=%v but actual was %v=", i1.data, i2.data)
-				}
+			if tt.want.size != tt.initial.size {
+				t.Errorf("wanted size=%v but actual was %v=", tt.want.size, tt.initial.size)
 			}
 
+			tempInit := tt.initial.head
+			tempWant := tt.initial.head
+			for tempInit != nil && tempWant !=nil  {
+				if tempInit.data != tempWant.data {
+					t.Errorf("Wanted data=%v but actual was %v=", tempWant.data, tempInit.data)
+				}
+				tempInit = tempInit.next
+				tempWant = tempWant.next
+			}
 		})
 	}
 }

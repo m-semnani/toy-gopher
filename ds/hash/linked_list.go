@@ -38,7 +38,7 @@ func (l *LinkedList) add(data int) {
 		temp = temp.next
 	}
 }
-
+// Index starts from 1
 func (l *LinkedList) delByIndex(index int) {
 	if index < 0 || index > l.size {
 		fmt.Printf("%v is out of bound!", index)
@@ -51,10 +51,11 @@ func (l *LinkedList) delByIndex(index int) {
 	}
 
 	before := l.head
-	for i := 0; i != index; i++ {
+	for i := 1; i < index -1; i++ {
 		before = before.next
 	}
 	before.next = before.next.next
+	l.size--
 }
 
 func (l *LinkedList) delByData(data int) bool {
