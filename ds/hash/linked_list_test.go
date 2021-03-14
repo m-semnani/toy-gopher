@@ -13,9 +13,6 @@ func initLL(d []int) *LinkedList {
 }
 
 func TestLinkedList_delByIndex(t *testing.T) {
-	type fields struct {
-		nodes []Node
-	}
 	type args struct {
 		index int
 	}
