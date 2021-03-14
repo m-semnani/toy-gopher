@@ -25,7 +25,13 @@ func TestLinkedList_delByIndex(t *testing.T) {
 		{
 			"remove from zero size ll",
 			initLL([]int{}),
-			args{index: 0},
+			args{index: 1},
+			initLL([]int{}),
+		},
+		{
+			"remove from single node list",
+			initLL([]int{1}),
+			args{index: 1},
 			initLL([]int{}),
 		},
 		{

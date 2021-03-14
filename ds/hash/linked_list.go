@@ -45,8 +45,9 @@ func (l *LinkedList) delByIndex(index int) {
 		return
 	}
 
-	if index == 0 && l.size == 0 {
+	if index == 1 && l.size == 1 {
 		l.head = nil
+		l.size--
 		return
 	}
 
